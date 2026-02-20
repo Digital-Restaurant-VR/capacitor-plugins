@@ -98,6 +98,13 @@ export interface ConfirmOptions {
    * @since 1.0.0
    */
   cancelButtonTitle?: string;
+
+  /**
+   * Style to use on ok button (IOS Style)
+   *
+   * @default "default"
+   */
+  okButtonStyle?: 'default' | 'destructive' | 'cancel'
 }
 
 export interface PromptResult {
