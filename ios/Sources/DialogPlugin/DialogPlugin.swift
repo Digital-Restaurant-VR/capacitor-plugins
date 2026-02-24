@@ -40,6 +40,7 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
         let okButtonTitle = call.options["okButtonTitle"] as? String ?? "OK"
         let cancelButtonTitle = call.options["cancelButtonTitle"] as? String ?? "Cancel"
         let okButtonStyleString = call.options["okButtonStyle"] as? String ?? "default"
+        let cancelButtonStyleString = call.options["cancelButtonStyle"] as? String ?? "default"
 
         // Map string to UIAlertAction.Style
         var okButtonStyle: UIAlertAction.Style
@@ -51,9 +52,19 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
             okButtonStyle = .default  // Default to .default for any other string
         }
 
+         // Map string to UIAlertAction.Style
+        var cancelButtonStyle: UIAlertAction.Style
+        if cancelButtonStyleString == "destructive" {
+            cancelButtonStyle = .destructive
+        } else if cancelButtonStyleString == "cancel" {
+            cancelButtonStyle = .cancel
+        } else {
+            cancelButtonStyle = .default  // Default to .default for any other string
+        }
+
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: UIAlertAction.Style.default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: cancelButtonStyle, handler: { (_) in
                 call.resolve([
                     "value": false
                 ])

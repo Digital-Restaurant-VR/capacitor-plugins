@@ -158,5 +158,6 @@ Show a confirmation dialog
 | **`okButtonTitle`**     | <code>string</code>                                 | Text to use on the positive action button. | <code>"OK"</code>      | 1.0.0 |
 | **`cancelButtonTitle`** | <code>string</code>                                 | Text to use on the negative action button. | <code>"Cancel"</code>  | 1.0.0 |
 | **`okButtonStyle`**     | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on ok button (IOS Style)      | <code>"default"</code> |       |
+| **`cancelButtonStyle`** | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on cancel button (IOS Style)  | <code>"default"</code> |       |
 
 </docgen-api>
