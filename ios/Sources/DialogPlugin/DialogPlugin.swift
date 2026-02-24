@@ -53,7 +53,7 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
 
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: UIAlertAction.style.default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: UIAlertAction.Style.default, handler: { (_) in
                 call.resolve([
                     "value": false
                 ])
