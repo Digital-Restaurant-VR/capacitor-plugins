@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.TypedValue;
+import android.widget.Button;
 import android.widget.EditText;
 
 public class Dialog {
@@ -66,7 +68,7 @@ public class Dialog {
     }
 
     public static void confirm(final Context context, final String message, final Dialog.OnResultListener listener) {
-        confirm(context, message, null, null, null, listener);
+        confirm(context, message, null, null, null,null,null, listener);
     }
 
     public static void confirm(
@@ -75,6 +77,8 @@ public class Dialog {
         final String title,
         final String okButtonTitle,
         final String cancelButtonTitle,
+        final String okButtonStyle,
+        final String cancelButtonStyle,
         final Dialog.OnResultListener listener
     ) {
         final String confirmOkButtonTitle = okButtonTitle == null ? "OK" : okButtonTitle;
@@ -103,6 +107,17 @@ public class Dialog {
             AlertDialog dialog = builder.create();
 
             dialog.show();
+
+            dialog.setOnShowListener(d -> {
+                Button okBtn = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button cancelBtn = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                if (okBtn != null)
+                    okBtn.setTextColor(resolveButtonTextColor(context, okButtonStyle));
+
+                if (cancelBtn != null)
+                    cancelBtn.setTextColor(resolveButtonTextColor(context, cancelButtonStyle));
+            });
         });
     }
 
@@ -157,4 +172,35 @@ public class Dialog {
             dialog.show();
         });
     }
+    private static int resolveButtonTextColor(Context context, String style) {
+        if (style == null) style = "default";
+
+        switch (style) {
+            case "destructive":
+                // If you defined a custom red in colors.xml, use that.
+                return resolveThemeColor(
+                        context,
+                        androidx.appcompat.R.attr.colorError,
+                        0xFF6200EE // fallback purple-ish
+                );
+
+            case "cancel":
+            case "default":
+            default:
+                return resolveThemeColor(
+                        context,
+                        androidx.appcompat.R.attr.colorPrimary,
+                        0xFF6200EE // fallback purple-ish
+                );
+        }
+    }
+
+    private static int resolveThemeColor(Context context, int attr, int fallbackColor) {
+        TypedValue typedValue = new TypedValue();
+        if (context.getTheme().resolveAttribute(attr, typedValue, true)) {
+            return typedValue.data;
+        }
+        return fallbackColor;
+    }
 }
+
