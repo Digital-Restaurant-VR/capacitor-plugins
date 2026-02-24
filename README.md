@@ -115,11 +115,13 @@ Show a confirmation dialog
 
 #### AlertOptions
 
-| Prop              | Type                | Description                       | Default           | Since |
-| ----------------- | ------------------- | --------------------------------- | ----------------- | ----- |
-| **`title`**       | <code>string</code> | Title of the dialog.              |                   | 1.0.0 |
-| **`message`**     | <code>string</code> | Message to show on the dialog.    |                   | 1.0.0 |
-| **`buttonTitle`** | <code>string</code> | Text to use on the action button. | <code>"OK"</code> | 1.0.0 |
+| Prop                        | Type                                                | Description                                                                                             | Default                | Since |
+| --------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------- | ----- |
+| **`title`**                 | <code>string</code>                                 | Title of the dialog.                                                                                    |                        | 1.0.0 |
+| **`message`**               | <code>string</code>                                 | Message to show on the dialog.                                                                          |                        | 1.0.0 |
+| **`buttonTitle`**           | <code>string</code>                                 | Text to use on the action button.                                                                       | <code>"OK"</code>      | 1.0.0 |
+| **`buttonStyle`**           | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on action button (IOS Style)                                                               | <code>"default"</code> |       |
+| **`useDefaultDialogStyle`** | <code>boolean</code>                                | ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat) | <code>"false"</code>   |       |
 
 
 #### PromptResult
@@ -132,14 +134,17 @@ Show a confirmation dialog
 
 #### PromptOptions
 
-| Prop                    | Type                | Description                                | Default               | Since |
-| ----------------------- | ------------------- | ------------------------------------------ | --------------------- | ----- |
-| **`title`**             | <code>string</code> | Title of the dialog.                       |                       | 1.0.0 |
-| **`message`**           | <code>string</code> | Message to show on the dialog.             |                       | 1.0.0 |
-| **`okButtonTitle`**     | <code>string</code> | Text to use on the positive action button. | <code>"OK"</code>     | 1.0.0 |
-| **`cancelButtonTitle`** | <code>string</code> | Text to use on the negative action button. | <code>"Cancel"</code> | 1.0.0 |
-| **`inputPlaceholder`**  | <code>string</code> | Placeholder text for hints.                |                       | 1.0.0 |
-| **`inputText`**         | <code>string</code> | Prepopulated text.                         |                       | 1.0.0 |
+| Prop                        | Type                                                | Description                                                                                             | Default                | Since |
+| --------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------- | ----- |
+| **`title`**                 | <code>string</code>                                 | Title of the dialog.                                                                                    |                        | 1.0.0 |
+| **`message`**               | <code>string</code>                                 | Message to show on the dialog.                                                                          |                        | 1.0.0 |
+| **`okButtonTitle`**         | <code>string</code>                                 | Text to use on the positive action button.                                                              | <code>"OK"</code>      | 1.0.0 |
+| **`cancelButtonTitle`**     | <code>string</code>                                 | Text to use on the negative action button.                                                              | <code>"Cancel"</code>  | 1.0.0 |
+| **`okButtonStyle`**         | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on ok button (IOS-like)                                                                    | <code>"default"</code> |       |
+| **`cancelButtonStyle`**     | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on cancel button (IOS-like)                                                                | <code>"default"</code> |       |
+| **`inputPlaceholder`**      | <code>string</code>                                 | Placeholder text for hints.                                                                             |                        | 1.0.0 |
+| **`inputText`**             | <code>string</code>                                 | Prepopulated text.                                                                                      |                        | 1.0.0 |
+| **`useDefaultDialogStyle`** | <code>boolean</code>                                | ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat) | <code>"false"</code>   |       |
 
 
 #### ConfirmResult
@@ -151,13 +156,14 @@ Show a confirmation dialog
 
 #### ConfirmOptions
 
-| Prop                    | Type                                                | Description                                | Default                | Since |
-| ----------------------- | --------------------------------------------------- | ------------------------------------------ | ---------------------- | ----- |
-| **`title`**             | <code>string</code>                                 | Title of the dialog.                       |                        | 1.0.0 |
-| **`message`**           | <code>string</code>                                 | Message to show on the dialog.             |                        | 1.0.0 |
-| **`okButtonTitle`**     | <code>string</code>                                 | Text to use on the positive action button. | <code>"OK"</code>      | 1.0.0 |
-| **`cancelButtonTitle`** | <code>string</code>                                 | Text to use on the negative action button. | <code>"Cancel"</code>  | 1.0.0 |
-| **`okButtonStyle`**     | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on ok button (IOS Style)      | <code>"default"</code> |       |
-| **`cancelButtonStyle`** | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on cancel button (IOS Style)  | <code>"default"</code> |       |
+| Prop                        | Type                                                | Description                                                                                             | Default                | Since |
+| --------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------- | ----- |
+| **`title`**                 | <code>string</code>                                 | Title of the dialog.                                                                                    |                        | 1.0.0 |
+| **`message`**               | <code>string</code>                                 | Message to show on the dialog.                                                                          |                        | 1.0.0 |
+| **`okButtonTitle`**         | <code>string</code>                                 | Text to use on the positive action button.                                                              | <code>"OK"</code>      | 1.0.0 |
+| **`cancelButtonTitle`**     | <code>string</code>                                 | Text to use on the negative action button.                                                              | <code>"Cancel"</code>  | 1.0.0 |
+| **`okButtonStyle`**         | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on ok button (IOS-like)                                                                    | <code>"default"</code> |       |
+| **`cancelButtonStyle`**     | <code>'default' \| 'destructive' \| 'cancel'</code> | Style to use on cancel button (IOS-like)                                                                | <code>"default"</code> |       |
+| **`useDefaultDialogStyle`** | <code>boolean</code>                                | ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat) | <code>"false"</code>   |       |
 
 </docgen-api>
