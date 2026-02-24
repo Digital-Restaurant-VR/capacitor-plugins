@@ -21,10 +21,21 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
         let buttonTitle = call.options["buttonTitle"] as? String ?? "OK"
+        let buttonStyleString = call.options["okButtonStyle"] as? String ?? "default"
+
+        // Map string to UIAlertAction.Style
+        var buttonStyle: UIAlertAction.Style
+        if buttonStyleString == "destructive" {
+            buttonStyle = .destructive
+        } else if buttonStyleString == "cancel" {
+            buttonStyle = .cancel
+        } else {
+            buttonStyle = .default  // Default to .default for any other string
+        }
 
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: buttonTitle, style: UIAlertAction.Style.default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: buttonTitle, style: buttonStyle, handler: { (_) in
                 call.resolve()
             }))
             self?.bridge?.viewController?.present(alert, animated: true, completion: nil)
@@ -88,7 +99,28 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
         let cancelButtonTitle = call.options["cancelButtonTitle"] as? String ?? "Cancel"
         let inputPlaceholder = call.options["inputPlaceholder"] as? String ?? ""
         let inputText = call.options["inputText"] as? String ?? ""
+        let okButtonStyleString = call.options["okButtonStyle"] as? String ?? "default"
+        let cancelButtonStyleString = call.options["cancelButtonStyle"] as? String ?? "default"
 
+        // Map string to UIAlertAction.Style
+        var okButtonStyle: UIAlertAction.Style
+        if okButtonStyleString == "destructive" {
+            okButtonStyle = .destructive
+        } else if okButtonStyleString == "cancel" {
+            okButtonStyle = .cancel
+        } else {
+            okButtonStyle = .default  // Default to .default for any other string
+        }
+
+         // Map string to UIAlertAction.Style
+        var cancelButtonStyle: UIAlertAction.Style
+        if cancelButtonStyleString == "destructive" {
+            cancelButtonStyle = .destructive
+        } else if cancelButtonStyleString == "cancel" {
+            cancelButtonStyle = .cancel
+        } else {
+            cancelButtonStyle = .default  // Default to .default for any other string
+        }
         DispatchQueue.main.async { [weak self] in
             let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
 
@@ -97,13 +129,13 @@ public class DialogPlugin: CAPPlugin, CAPBridgedPlugin {
                 textField.text = inputText
             }
 
-            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: UIAlertAction.Style.default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: cancelButtonTitle, style: cancelButtonStyle, handler: { (_) in
                 call.resolve([
                     "value": "",
                     "cancelled": true
                 ])
             }))
-            alert.addAction(UIAlertAction(title: okButtonTitle, style: UIAlertAction.Style.default, handler: { (_) in
+            alert.addAction(UIAlertAction(title: okButtonTitle, style: okButtonStyle, handler: { (_) in
                 let textField = alert.textFields?[0]
                 call.resolve([
                     "value": textField?.text ?? "",

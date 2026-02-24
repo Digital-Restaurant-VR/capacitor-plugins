@@ -16,6 +16,8 @@ public class DialogPlugin extends Plugin {
         final String title = call.getString("title");
         final String message = call.getString("message");
         final String buttonTitle = call.getString("buttonTitle", "OK");
+        final String buttonStyle = call.getString("buttonStyle", "default");
+        final Boolean useDefaultDialogStyle = call.getBoolean("useDefaultDialogStyle", false)
 
         if (message == null) {
             call.reject("Please provide a message for the dialog");
@@ -27,7 +29,7 @@ public class DialogPlugin extends Plugin {
             return;
         }
 
-        Dialog.alert(activity, message, title, buttonTitle, (value, didCancel, inputValue) -> call.resolve());
+        Dialog.alert(activity, message, title, buttonTitle,buttonStyle,useDefaultDialogStyle, (value, didCancel, inputValue) -> call.resolve());
     }
 
     @PluginMethod
@@ -37,6 +39,9 @@ public class DialogPlugin extends Plugin {
         final String message = call.getString("message");
         final String okButtonTitle = call.getString("okButtonTitle", "OK");
         final String cancelButtonTitle = call.getString("cancelButtonTitle", "Cancel");
+        final String cancelButtonStyle = call.getString("cancelButtonStyle", "default");
+        final String okButtonStyle = call.getString("okButtonStyle", "default");
+        final Boolean useDefaultDialogStyle = call.getBoolean("useDefaultDialogStyle", false)
 
         if (message == null) {
             call.reject("Please provide a message for the dialog");
@@ -48,7 +53,7 @@ public class DialogPlugin extends Plugin {
             return;
         }
 
-        Dialog.confirm(activity, message, title, okButtonTitle, cancelButtonTitle, (value, didCancel, inputValue) -> {
+        Dialog.confirm(activity, message, title, okButtonTitle, cancelButtonTitle, okButtonStyle,cancelButtonStyle,useDefaultDialogStyle, (value, didCancel, inputValue) -> {
             JSObject ret = new JSObject();
             ret.put("value", value);
             call.resolve(ret);
@@ -62,8 +67,11 @@ public class DialogPlugin extends Plugin {
         final String message = call.getString("message");
         final String okButtonTitle = call.getString("okButtonTitle", "OK");
         final String cancelButtonTitle = call.getString("cancelButtonTitle", "Cancel");
+        final String cancelButtonStyle = call.getString("cancelButtonStyle", "default");
+        final String okButtonStyle = call.getString("okButtonStyle", "default");
         final String inputPlaceholder = call.getString("inputPlaceholder", "");
         final String inputText = call.getString("inputText", "");
+        final Boolean useDefaultDialogStyle = call.getBoolean("useDefaultDialogStyle", false)
 
         if (message == null) {
             call.reject("Please provide a message for the dialog");
@@ -81,8 +89,11 @@ public class DialogPlugin extends Plugin {
             title,
             okButtonTitle,
             cancelButtonTitle,
+            cancelButtonStyle,
+            okButtonStyle,
             inputPlaceholder,
             inputText,
+            useDefaultDialogStyle,
             (value, didCancel, inputValue) -> {
                 JSObject ret = new JSObject();
                 ret.put("cancelled", didCancel);
