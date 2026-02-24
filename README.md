@@ -77,7 +77,7 @@ Substitute {{plugin-folder}} and {{plugin}} with the desired plugin: (e.g 'dialo
 `git add dist -f`
 `git commit -m "build({{plugin}}): dist for v8.0.1.2"`
 `cd ..`
-`git subtree split --prefix=dialog -b temp`
+`git subtree split --prefix={{plugin-folder}} -b temp`
 `git tag @{{capacitor-plugin}}-v8.0.1.2 temp`
 `git reset --hard origin/main`
 `git push --tags`
