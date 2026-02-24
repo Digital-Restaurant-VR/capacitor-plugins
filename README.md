@@ -66,3 +66,19 @@ These are experimental plugins. Use at your own risk.
 ## Contributing
 
 See [`CONTRIBUTING.md`](./CONTRIBUTING.md).
+
+
+## HOW TO PUBLISH NEW VERSIONS OF SINGLE PLUGINS:
+
+Substitute {{plugin-folder}} and {{plugin}} with the desired plugin: (e.g 'dialog')
+
+`cd {{plugin-folder}}`
+`npm run build`
+`git add dist -f`
+`git commit -m "build({{plugin}}): dist for v8.0.1.2"`
+`cd ..`
+`git subtree split --prefix=dialog -b temp`
+`git tag @{{capacitor-plugin}}-v8.0.1.2 temp`
+`git reset --hard origin/main`
+`git push --tags`
+`git branch -D temp`
