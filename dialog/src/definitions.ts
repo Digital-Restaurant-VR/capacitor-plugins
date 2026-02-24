@@ -20,6 +20,20 @@ export interface AlertOptions {
    * @since 1.0.0
    */
   buttonTitle?: string;
+
+  /**
+   * Style to use on action button (IOS Style)
+   *
+   * @default "default"
+   */
+  buttonStyle?: 'default' | 'destructive' | 'cancel';
+
+  /**
+   * ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat)
+   *
+   * @default "false"
+   */
+  useDefaultDialogStyle?: boolean;
 }
 
 export interface PromptOptions {
@@ -54,6 +68,20 @@ export interface PromptOptions {
   cancelButtonTitle?: string;
 
   /**
+   * Style to use on ok button (IOS-like)
+   *
+   * @default "default"
+   */
+  okButtonStyle?: 'default' | 'destructive' | 'cancel';
+
+  /**
+   * Style to use on cancel button (IOS-like)
+   *
+   * @default "default"
+   */
+  cancelButtonStyle?: 'default' | 'destructive' | 'cancel';
+
+  /**
    * Placeholder text for hints.
    *
    * @since 1.0.0
@@ -66,6 +94,13 @@ export interface PromptOptions {
    * @since 1.0.0
    */
   inputText?: string;
+
+  /**
+   * ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat)
+   *
+   * @default "false"
+   */
+  useDefaultDialogStyle?: boolean;
 }
 
 export interface ConfirmOptions {
@@ -100,18 +135,25 @@ export interface ConfirmOptions {
   cancelButtonTitle?: string;
 
   /**
-   * Style to use on ok button (IOS Style)
+   * Style to use on ok button (IOS-like)
    *
    * @default "default"
    */
-  okButtonStyle?: 'default' | 'destructive' | 'cancel'
+  okButtonStyle?: 'default' | 'destructive' | 'cancel';
 
   /**
-   * Style to use on cancel button (IOS Style)
+   * Style to use on cancel button (IOS-like)
    *
    * @default "default"
    */
-  cancelButtonStyle?: 'default' | 'destructive' | 'cancel'
+  cancelButtonStyle?: 'default' | 'destructive' | 'cancel';
+  
+  /**
+   * ANDROID ONLY: Whether the alert uses the DeviceTheme or the default theme used by Capacitor (AppCompat)
+   *
+   * @default "false"
+   */
+  useDefaultDialogStyle?: boolean;
 }
 
 export interface PromptResult {
